@@ -9,7 +9,7 @@ const { registerRecord, retrieveRecordList, updateRecordInfo} = require("../prov
 module.exports.registerRecords = async (req, res) => {
     try{
         const { challengeId } = req.params;
-        const { createdAt, value } = req.body;
+        const { value } = req.body;
 
         if(!challengeId) {
             console.log("This is not proper challengeId");
