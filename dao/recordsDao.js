@@ -24,7 +24,7 @@ module.exports.updateRecord = async(connection, challengeId, recordId, value) =>
     const updateRecordsQuery = `
     UPDATE Records 
     SET value=? 
-    WHERE challengeId=? AND recprdId=? ;`
+    WHERE challengeId=? AND id=? ;`
     const [updateRecordRow] = await connection.query(updateRecordsQuery, [value, challengeId, recordId])
     return updateRecordRow
 }
