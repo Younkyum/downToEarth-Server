@@ -14,7 +14,7 @@ module.exports.registerRecords = async (req, res) => {
         if(!challengeId) {
             console.log("This is not proper challengeId");
         } else {
-            const registerResponse = await this.registerRecord(
+            const registerResponse = await registerRecord(
                 challengeId,
                 value
             );
@@ -45,13 +45,12 @@ module.exports.retrieveRecords = async (req, res) => {
         if(!challengeId) {
             console.log("This is not proper challengeId");
         } else {
-            const retrieveRecordResponse = await this.retrieveRecordList(
+            const retrieveRecordResponse = await retrieveRecordList(
                 challengeId,
                 recordId,
                 value,
                 createdAt
             );
-            console.log(retrieveRecordResponse);
             return res.send(retrieveRecordResponse);
         }
     } catch (err) {
@@ -83,7 +82,7 @@ module.exports.updateRecord = async (req, res) => {
             res.send("This is not proper ids");
             res.redirect("/");
         } else {
-            const updateRecordInfoResponse = await this.updateRecordInfo(
+            const updateRecordInfoResponse = await updateRecordInfo(
                 challengeId,
                 recordId,
                 value

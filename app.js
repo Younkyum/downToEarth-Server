@@ -12,4 +12,4 @@ app.listen(3000, () => {
 
 
 app.use("/challenges", challengesRouter);
-app.use("/records", recordsRouter);
+app.use("/challenges", recordsRouter);

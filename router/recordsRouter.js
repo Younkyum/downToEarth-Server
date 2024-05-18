@@ -2,13 +2,13 @@ const { registerRecords, retrieveRecords, updateRecord } = require(`../controlle
 const express = require("express");
 const router = express.Router();
 
-router.route("/add")
+router.route("/:challengeId/records/add")
 .post(registerRecords)
 
-router.route("/")
+router.route("/:challengeId/records")
 .get(retrieveRecords)
 
-router.route("/edit")
+router.route("/:challengeId/records/edit")
 .post(updateRecord)
 
 
