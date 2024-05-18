@@ -1,4 +1,4 @@
-const { searchCurrentChallenges, searchEndChallenges, addChallenge, addChallenge } = require("../provider/challengesProvider");
+const { searchCurrentChallenges, searchEndChalenges, addChallenge } = require("../provider/challengesProvider");
 
 /** 현재 진행중인 챌린지 데이터 전달 */
 module.exports.getCurrentChallenges = async(req, res) => {
@@ -18,7 +18,7 @@ module.exports.getCurrentChallenges = async(req, res) => {
 /** 마무리된 챌린지 데이터 전달 */
 module.exports.getEndChallenges = async(req, res) => {
     try {
-        const searchEndChallengeData = await searchEndChallenges();
+        const searchEndChallengeData = await searchEndChalenges();
 
         return res.status(200).json({ data: searchEndChallengeData });
     } catch (err) {
@@ -40,7 +40,7 @@ module.exports.postChallenge = async(req, res) => {
             countUnit, 
             endAt, 
             notificationPlan } = req.body;
-        const addChallenge = await addChallenge(
+        const addChallengeResult = await addChallenge(
             title, 
             targetCount, 
             countUnit, 

@@ -13,7 +13,7 @@ module.exports.selectEndChallenges = async(connection) => {
     const selectEndChallengesQuery = `
     SELECT *
     FROM Challenges
-    WHERE endDate < CURDATE();`
+    WHERE endAt < CURDATE();`
     const [selectEndChallengesRow] = await connection.query(selectEndChallengesQuery);
     return selectEndChallengesRow;
 }
