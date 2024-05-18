@@ -18,12 +18,11 @@ module.exports.selectEndChallenges = async(connection) => {
     return selectEndChallengesRow;
 }
 
-
 /** 챌린지 추가하기 */
 module.exports.insertChallenge = async(connection, title, targetCount, countUnit, endAt, notificationPlan) => {
     const insertChallengeQuery = `
     INSERT INTO Challenges (title, targetCount, countUnit, endAt, notificationPlan)
     VALUES (?, ?, ?, ?, ?);`
-    const [insertChallengeRow] = await connection.query(insertChallengeQuery);
+    const [insertChallengeRow] = await connection.query(insertChallengeQuery, [title, targetCount, countUnit, endAt, notificationPlan]);
     return insertChallengeRow;
 }
