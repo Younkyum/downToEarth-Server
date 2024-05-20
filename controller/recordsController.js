@@ -18,8 +18,7 @@ module.exports.registerRecords = async (req, res) => {
                 challengeId,
                 value
             );
-            console.log(registerResponse);
-            return res.send(registerResponse);
+            return res.send( { isSuccess: true });
         }
     } catch (err) {
         console.log("Error", err);
@@ -87,8 +86,7 @@ module.exports.updateRecord = async (req, res) => {
                 recordId,
                 value
             );
-            console.log(updateRecordInfoResponse);
-            return res.send(updateRecordInfoResponse);
+            return res.send( { isSuccess: true });
         }
     } catch (err) {
         console.log("Error", err);
