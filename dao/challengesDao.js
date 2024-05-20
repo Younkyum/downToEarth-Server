@@ -26,3 +26,13 @@ module.exports.insertChallenge = async(connection, title, targetCount, countUnit
     const [insertChallengeRow] = await connection.query(insertChallengeQuery, [title, targetCount, countUnit, endAt, notificationPlan]);
     return insertChallengeRow;
 }
+
+/** 특정 챌린지 정보 확인 */
+module.exports.selelctChallengeById = async(connection, challengeId) => {
+    const selelctChallengeByIdQuery = `
+    SELECT *
+    FROM Challenges
+    WHERE id=?;`
+    const [selectChallengesByIdRow] = await connection.query(selelctChallengeByIdQuery, [challengeId]);
+    return selectChallengesByIdRow;
+}

@@ -1,4 +1,5 @@
-const { searchCurrentChallenges, searchEndChalenges, addChallenge } = require("../provider/challengesProvider");
+const { searchCurrentChallenges, searchEndChalenges, addChallenge, searchChallengeDetail } = require("../provider/challengesProvider");
+const { retrieveRecordList } = require("../provider/recordsProvider");
 
 /** 현재 진행중인 챌린지 데이터 전달 */
 module.exports.getCurrentChallenges = async(req, res) => {
@@ -48,6 +49,26 @@ module.exports.postChallenge = async(req, res) => {
             notificationPlan);
         
         return res.status(200).json({ isSuccess: true });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send( {
+            status: 500,
+            message: "Error: Server did not worked wiht expectations."
+        })
+    }
+}
+
+
+/** 챌린지 정보 조회 */
+module.exports.getChallengeDetails = async(req, res) => {
+    try {
+        const { id } = req.params;
+        console.log(id)
+        
+        const challengeDetailResult = await searchChallengeDetail(id);
+        const challengeRecordsResult = await retrieveRecordList(id);
+    
+        return res.status(200).json({ data: challengeDetailResult, records: challengeRecordsResult });
     } catch (err) {
         console.log(err);
         return res.status(500).send( {
