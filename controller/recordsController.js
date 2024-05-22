@@ -1,3 +1,4 @@
+const { editChallnegeCount } = require("../provider/challengesProvider");
 const { registerRecord, retrieveRecordList, updateRecordInfo} = require("../provider/recordsProvider");
 
 /*
@@ -18,6 +19,7 @@ module.exports.registerRecords = async (req, res) => {
                 challengeId,
                 value
             );
+            const currentCountAddChallengeResponse = await editChallnegeCount(challengeId);
             return res.send( { isSuccess: true });
         }
     } catch (err) {

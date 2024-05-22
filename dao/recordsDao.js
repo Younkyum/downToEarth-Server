@@ -9,7 +9,6 @@ module.exports.selectRecords = async(connection, challengeId) => {
     return selectReocrdsRow;
 }
 
-
 /** 해당 챌린지에 정보 추가하기 */
 module.exports.insertRecord = async(connection, challengeId, value) => {
     const insertReocordQuery = `
