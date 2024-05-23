@@ -43,8 +43,8 @@ module.exports.selelctChallengeById = async(connection, challengeId) => {
 module.exports.updateChallnegeCount = async(connection, challengeId) => {
     const updateChallnegeCountQuery = `
     UPDATE Challenges
-    SET currentCount += 1
-    WHERE id = challengeId;`;
+    SET currentCount = Challenges.currentCount + 1
+    WHERE id = ?;`;
     const [updateChallengeCountRow] = await connection.query(updateChallnegeCountQuery, [challengeId]);
     return updateChallengeCountRow;
 }
