@@ -1,5 +1,5 @@
 const pool = require('../config/database');
-const { insertRecord, selectRecords, updateRecord } = require('../dao/recordsDao');
+const { insertRecord, selectRecords, updateRecord, selectAllRecords } = require('../dao/recordsDao');
 
 /** 기록 하나 추가 */
 exports.registerRecord = async(challengeId, value) => {
@@ -24,4 +24,12 @@ exports.updateRecordInfo = async(challengeId, recordId, value) => {
     const updateRecordResult = await updateRecord(connection, challengeId, recordId, value);
     connection.release();
     return updateRecordResult;
+}
+
+/** TEMP */
+module.exports.searchAllRecords = async() => {
+    const connection = await pool.getConnection(async (conn) => (conn));
+    const searchAllRecordsResult = selectAllRecords(connection);
+    connection.release();
+    return searchAllRecordsResult;
 }

@@ -1,4 +1,4 @@
-const { searchCurrentChallenges, searchEndChalenges, addChallenge, searchChallengeDetail } = require("../provider/challengesProvider");
+const { searchCurrentChallenges, searchEndChalenges, addChallenge, searchChallengeDetail, searchAllChallenges } = require("../provider/challengesProvider");
 const { retrieveRecordList } = require("../provider/recordsProvider");
 
 /** 현재 진행중인 챌린지 데이터 전달 */
@@ -21,7 +21,7 @@ module.exports.getEndChallenges = async(req, res) => {
     try {
         const searchEndChallengeData = await searchEndChalenges();
 
-        return res.status(200).json({ data: searchEndChallengeData });
+        return res.status(200).json({ data: searchEndChallengeData, recordUrl: "/" });
     } catch (err) {
         console.log(err);
         return res.status(500).send( {
@@ -76,4 +76,18 @@ module.exports.getChallengeDetails = async(req, res) => {
             message: "Error: Server did not worked wiht expectations."
         })
     }
+}
+
+/** Temp */
+module.exports.getAllChallenges = async(req, res) => {
+    try {
+        const challengesResult = await searchAllChallenges();
+        return res.status(200).json({ data: challengesResult });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send( {
+            status: 500,
+            message: "Error: Server did not worked wiht expectations."
+    })
+}
 }

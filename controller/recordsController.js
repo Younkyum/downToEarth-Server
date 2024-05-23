@@ -1,5 +1,5 @@
 const { editChallnegeCount } = require("../provider/challengesProvider");
-const { registerRecord, retrieveRecordList, updateRecordInfo} = require("../provider/recordsProvider");
+const { registerRecord, retrieveRecordList, updateRecordInfo, searchAllRecords} = require("../provider/recordsProvider");
 
 /*
  * API No. 2.B 
@@ -92,5 +92,19 @@ module.exports.updateRecord = async (req, res) => {
         }
     } catch (err) {
         console.log("Error", err);
+    }
+}
+
+/** Temp */
+module.exports.getAllRecords = async(req, res) => {
+    try {
+        const recordResult = await searchAllRecords();
+        return res.status(200).json({ data: recordResult });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send( {
+            status: 500,
+            message: "Error: Server did not worked wiht expectations."
+        })
     }
 }

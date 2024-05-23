@@ -27,3 +27,12 @@ module.exports.updateRecord = async(connection, challengeId, recordId, value) =>
     const [updateRecordRow] = await connection.query(updateRecordsQuery, [value, challengeId, recordId])
     return updateRecordRow
 }
+
+/** TEMP: 레코드 확인용 */
+module.exports.selectAllRecords = async(connection) => {
+    const selectAllRecordsQuery = `
+    SELECT *
+    FROM Records;`
+    const [selectAllRecordsRow] = await connection.query(selectAllRecordsQuery);
+    return selectAllRecordsRow;
+}

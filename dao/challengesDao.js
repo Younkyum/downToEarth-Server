@@ -48,3 +48,12 @@ module.exports.updateChallnegeCount = async(connection, challengeId) => {
     const [updateChallengeCountRow] = await connection.query(updateChallnegeCountQuery, [challengeId]);
     return updateChallengeCountRow;
 }
+
+/** TEMP: 데이터 확인용 */
+module.exports.selectAllChallenge = async(connection)  => {
+    const selectAllChallengeQuery = `
+    SELECT * 
+    FROM Challenges;`
+    const [selectAllChallengeRow] = await connection.query(selectAllChallengeQuery);
+    return selectAllChallengeRow;
+}

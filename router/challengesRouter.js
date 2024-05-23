@@ -1,4 +1,4 @@
-const { getCurrentChallenges, getEndChallenges, postChallenge, getChallengeDetails } = require(`../controller/challengesController`);
+const { getCurrentChallenges, getEndChallenges, postChallenge, getChallengeDetails, getAllChallenges } = require(`../controller/challengesController`);
 const express = require("express");
 const router = express.Router();
 
@@ -10,6 +10,9 @@ router.route("/end")
 
 router.route("/add")
 .post(postChallenge);
+
+router.route("/tempChallenges")
+.get(getAllChallenges);
 
 router.route("/:id")
 .get(getChallengeDetails);

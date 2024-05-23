@@ -1,4 +1,4 @@
-const { selectCurrentChallenges, selectEndChallenges, insertChallenge, selelctChallengeById, updateChallnegeCount } = require("../dao/challengesDao");
+const { selectCurrentChallenges, selectEndChallenges, insertChallenge, selelctChallengeById, updateChallnegeCount, selectAllChallenge } = require("../dao/challengesDao");
 const pool = require("../config/database");
 
 /** 현재 진행 중인 챌린지를 받아옴 */
@@ -39,4 +39,12 @@ module.exports.editChallnegeCount = async(challengeId) => {
     const editChallnegeCountResult = updateChallnegeCount(connection, challengeId);
     connection.release();
     return editChallnegeCountResult;
+}
+
+/** TEMP */
+module.exports.searchAllChallenges = async() => {
+    const connection = await pool.getConnection(async (conn) => (conn));
+    const searchAllChallengesResult = selectAllChallenge(connection);
+    connection.release();
+    return searchAllChallengesResult;
 }
