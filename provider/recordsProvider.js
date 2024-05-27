@@ -19,9 +19,9 @@ exports.retrieveRecordList = async(challengeId) => {
 }
 
 /** 기록 하나 수정 */
-exports.updateRecordInfo = async(challengeId, recordId, value) => {
+exports.updateRecordInfo = async(recordId, value) => {
     const connection = await pool.getConnection(async conn => conn);
-    const updateRecordResult = await updateRecord(connection, challengeId, recordId, value);
+    const updateRecordResult = await updateRecord(connection, recordId, value);
     connection.release();
     return updateRecordResult;
 }

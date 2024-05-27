@@ -76,15 +76,13 @@ module.exports.retrieveRecords = async (req, res) => {
 
 module.exports.updateRecord = async (req, res) => {
     try {
-        const { challengeId } = req.params;
         const { recordId, value } = req.body;
 
-        if (!challengeId && !recordId){
+        if (!recordId){
             res.send("This is not proper ids");
             res.redirect("/");
         } else {
             const updateRecordInfoResponse = await updateRecordInfo(
-                challengeId,
                 recordId,
                 value
             );

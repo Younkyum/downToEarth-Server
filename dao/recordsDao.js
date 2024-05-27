@@ -19,12 +19,12 @@ module.exports.insertRecord = async(connection, challengeId, value) => {
 }
 
 /** 해당 챌린지 레코드 수정하기 */
-module.exports.updateRecord = async(connection, challengeId, recordId, value) => {
+module.exports.updateRecord = async(connection, recordId, value) => {
     const updateRecordsQuery = `
     UPDATE Records 
     SET value=? 
-    WHERE challengeId=? AND id=? ;`
-    const [updateRecordRow] = await connection.query(updateRecordsQuery, [value, challengeId, recordId])
+    WHERE id=? ;`
+    const [updateRecordRow] = await connection.query(updateRecordsQuery, [value, recordId])
     return updateRecordRow
 }
 
