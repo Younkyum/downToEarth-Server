@@ -21,7 +21,17 @@ module.exports.getEndChallenges = async(req, res) => {
     try {
         const searchEndChallengeData = await searchEndChalenges();
 
-        return res.status(200).json({ data: searchEndChallengeData, recordUrl: "/" });
+        var resultData = []
+
+        for (const challenge of searchEndChallengeData) {
+            const tempObject = { challenge: challenge, records: [] };
+            const challengeRecordsResult = await retrieveRecordList(challenge.id);
+            tempObject.records = challengeRecordsResult;
+            resultData.push(tempObject);
+            console.log(resultData);
+        }
+
+        return res.status(200).json({ data: resultData });
     } catch (err) {
         console.log(err);
         return res.status(500).send( {
@@ -88,6 +98,6 @@ module.exports.getAllChallenges = async(req, res) => {
         return res.status(500).send( {
             status: 500,
             message: "Error: Server did not worked wiht expectations."
-    })
-}
+        })
+    }
 }
